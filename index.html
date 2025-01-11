@@ -48,7 +48,7 @@
     <!--Prima parte del Main relativa al Form degli input e al submitButton-->
     <main class="container">
         <div class="row">
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-sm-8">
 
                 <h2 class="mb-3">Richiesta Preventivo</h2>
                 <p>Compila il forum per richiedere un preventivo per i nostri servizi di sviluppo</p> 
@@ -91,24 +91,24 @@
                     </div>
                     <div class="container">
                         <div class="row">
-                            <div class="col-12 col-lg-4">
-                                <button class="btn btn-primary mb-3" type="submit">Calcola Preventivo</button>
+                            <div class="col-12 col-sm-6">
+                                <button class="btn btn-primary mb-3" id="buttonPreventivo" type="submit">Calcola Preventivo</button>
                             </div>
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-sm-6">
                                 <h6 class="mb-auto">Prezzo Finale</h6>
-                                <p class="mb-2" id="result">0000</p>
-                            </div>
-                            <div id="scontoOttenuto" class="col-12 col-lg-4">
-                                <p>Hai ottenuto uno sconto del 25%</p>
+                                <p class="mb-2" id="result"></p>
                             </div>
                         </div>
+                    </div>
+                    <div id="scontoOttenuto" class="col-12 mb-3">
+                        <p class="alert alert-success text-center">Hai ottenuto uno sconto del 25%</p>
                     </div>
                 </form>
             </div>
     
             <!--Seconda parte del Main relativa alla Card-->
-            <div class="col-4 col-lg-4">
-                <div class="d-flex justify-content-start">
+            <div class="col-12 col-sm-4 ">
+                <div>
                     <div class="card ms-auto" style="max-width: 300px;">
                         <img src="img/superficie-e-strutture-astratte-del-muro-di-pietra-concreto-bianco_74190-8184.avif" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -130,8 +130,11 @@
     <footer class="bg-black text-white p-3 d-flex justify-content-center mt-5">
         <p>&#169; 2024 - Tutti i diritti riservati</p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+crossorigin="anonymous"></script>
