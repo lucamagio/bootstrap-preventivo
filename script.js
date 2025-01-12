@@ -30,6 +30,10 @@ function validazioneForm(){
     const selectWork = document.querySelector('#selectWork')
     validazioneCampo(selectWork, selectWork.value !== '')
 
+    //Validazione informazioni aggiuntive
+    const textareaInput = document.querySelector('#textareaInput')
+    validazioneCampo(textareaInput, textareaInput.value !== '')
+
     //Validazione Privacy Policy
     const privacyCheckbox = document.querySelector('#flexCheckDefault');
     validazioneCampo(privacyCheckbox, privacyCheckbox.checked)
@@ -75,7 +79,7 @@ function calcoloPreventivo(work){
     //Stampa a video se lo sconto è avvenuto oppure no
     document.getElementById('scontoOttenuto').innerHTML = scontoOttenuto
 
-    return preventivo
+    return preventivo.replace('.', ',')
 }
 
 const buttonPreventivo = document.querySelector('#buttonPreventivo')
@@ -83,10 +87,9 @@ const buttonPreventivo = document.querySelector('#buttonPreventivo')
 //Evento click del bottono 'calcolo preventivo'
 buttonPreventivo.addEventListener('click', function(event){
     event.preventDefault()
-
+    
     //Guarda il risultato della validazione del form
     if(!validazioneForm()){
-
         //In caso la validazione di un campo sia negativa, blocca l'evento
         return
     }
@@ -95,5 +98,10 @@ buttonPreventivo.addEventListener('click', function(event){
     const selectWork = document.querySelector('#selectWork').value
     const result = document.querySelector('#result')
 
-    result.innerHTML = `€ ${calcoloPreventivo(selectWork)}`
+    const preventivoFormattato = calcoloPreventivo(selectWork)
+    const [intero, decimale] = preventivoFormattato.split(',')
+
+
+
+    result.innerHTML = `€ <strong>${intero}</strong>,${decimale}`
 })
