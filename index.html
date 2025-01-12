@@ -53,27 +53,31 @@
                 <h2 class="mb-3">Richiesta Preventivo</h2>
                 <p>Compila il forum per richiedere un preventivo per i nostri servizi di sviluppo</p> 
 
-                <form>
+                <form id="validationForm">
                     <div class="mb-3">
                         <label for="nameInput" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nameInput">
+                        <input type="text" class="form-control" id="nameInput" required>
+                        <div class="invalid-feedback">Inserisci il Nome</div>
                     </div>
                     <div class="mb-3">
                         <label for="surnameInput" class="form-label">Cognome</label>
-                        <input type="text" class="form-control" id="surnameInput">
+                        <input type="text" class="form-control" id="surnameInput" required>
+                        <div class="invalid-feedback">Inserisci il Cognome</div>
                     </div>
                     <div class="mb-3">
                         <label for="emailInput" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="emailInput">
+                        <input type="email" class="form-control" id="emailInput" required>
+                        <div class="invalid-feedback">Email non valida</div>
                     </div>
                     <div class="mb-3">
                         <label for="selectWork" class="form-label">Tipo di Lavoro</label>
-                        <select class="form-select" id="selectWork">
+                        <select class="form-select" id="selectWork" required>
                             <option value="" disabled selected>Seleziona il tipo di lavoro</option>
                             <option value="1">Backed Development</option>
                             <option value="2">Frontend Development</option>
                             <option value="3">Project Analysis</option>
                         </select>
+                        <div class="invalid-feedback">Seleziona un tipo di lavoro</div>
                     </div>
                     <div class="mb-3">
                         <label for="textareaInput" class="form-label">Textarea con Boostrap 5</label>
@@ -86,8 +90,9 @@
                         <input type="text" class="form-control" id="codiceInput">
                     </div>
                     <div class="form-check mb-5">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                         <label class="form-check-label" for="flexCheckDefault">Accetto le Privacy Policy</label>
+                        <div class="invalid-feedback">Devi accettare le Privacy Policy</div>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -101,7 +106,7 @@
                         </div>
                     </div>
                     <div id="scontoOttenuto" class="col-12 mb-3">
-                        <p class="alert alert-success text-center">Hai ottenuto uno sconto del 25%</p>
+                        
                     </div>
                 </form>
             </div>
