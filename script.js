@@ -87,16 +87,17 @@ const buttonPreventivo = document.querySelector('#buttonPreventivo')
 //Evento click del bottono 'calcolo preventivo'
 buttonPreventivo.addEventListener('click', function(event){
     event.preventDefault()
-    
-    //Guarda il risultato della validazione del form
-    if(!validazioneForm()){
-        //In caso la validazione di un campo sia negativa, blocca l'evento
-        return
-    }
 
     //In caso di validazione confermata: Calcolo del preventivo
     const selectWork = document.querySelector('#selectWork').value
     const result = document.querySelector('#result')
+    
+    //Guarda il risultato della validazione del form
+    if(!validazioneForm()){
+        //In caso la validazione di un campo sia negativa, blocca l'evento
+        result.innerHTML = ''
+        return
+    }
 
     const preventivoFormattato = calcoloPreventivo(selectWork)
     const [intero, decimale] = preventivoFormattato.split(',')
