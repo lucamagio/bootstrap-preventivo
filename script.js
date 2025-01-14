@@ -1,47 +1,16 @@
-
-
 //Funzione per la validazione dei campi del form
-function validazioneForm(){
-   let isValid = true
-
-   function validazioneCampo(input, condizione){
+function validazioneCampo(input, condizione){
     if (condizione) {
         input.classList.remove('is-invalid');
         input.classList.add('is-valid');
     } else {
         input.classList.add('is-invalid');
         input.classList.remove('is-valid');
-        isValid = false;
+        return false;
     }
+
+    return true
    }
-
-    //Validazione nome
-    const nameInput = document.querySelector('#nameInput')
-    validazioneCampo(nameInput, nameInput.value.trim() !== '')
-
-    //Validazione cognome
-    const surnameInput = document.querySelector('#surnameInput')
-    validazioneCampo(surnameInput, surnameInput.value.trim() !== '')
-
-    //Validazione email
-    const emailInput = document.querySelector('#emailInput')
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    validazioneCampo(emailInput, emailRegex.test(emailInput.value))
-
-    //Validazione scelta lavoro
-    const selectWork = document.querySelector('#selectWork')
-    validazioneCampo(selectWork, selectWork.value !== '')
-
-    //Validazione informazioni aggiuntive
-    const textareaInput = document.querySelector('#textareaInput')
-    validazioneCampo(textareaInput, textareaInput.value !== '')
-
-    //Validazione Privacy Policy
-    const privacyCheckbox = document.querySelector('#flexCheckDefault');
-    validazioneCampo(privacyCheckbox, privacyCheckbox.checked)
-
-    return isValid
-}
 
 
 //Funzione per il calcolo del preventivo
@@ -90,21 +59,50 @@ const buttonPreventivo = document.querySelector('#buttonPreventivo')
 buttonPreventivo.addEventListener('click', function(event){
     event.preventDefault()
 
+    let isValid = true
+
+    //Validazione nome
+    const nameInput = document.querySelector('#nameInput')
+    isValid &= validazioneCampo(nameInput, nameInput.value.trim() !== '')
+
+    //Validazione cognome
+    const surnameInput = document.querySelector('#surnameInput')
+    isValid &= validazioneCampo(surnameInput, surnameInput.value.trim() !== '')
+
+    //Validazione email
+    const emailInput = document.querySelector('#emailInput')
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    isValid &= validazioneCampo(emailInput, emailRegex.test(emailInput.value))
+
+    //Validazione scelta lavoro
+    const selectWork = document.querySelector('#selectWork')
+    isValid &= validazioneCampo(selectWork, selectWork.value !== '')
+
+    //Validazione informazioni aggiuntive
+    const textareaInput = document.querySelector('#textareaInput')
+    isValid &= validazioneCampo(textareaInput, textareaInput.value !== '')
+
+    //Validazione Privacy Policy
+    const privacyCheckbox = document.querySelector('#flexCheckDefault');
+    isValid &= validazioneCampo(privacyCheckbox, privacyCheckbox.checked)
+
     //In caso di validazione confermata: Calcolo del preventivo
-    const selectWork = document.querySelector('#selectWork').value
     const result = document.querySelector('#result')
     campiError = document.querySelector('#campiError')
 
     //Guarda il risultato della validazione del form
-    if(!validazioneForm()){
+    if(!isValid){
         //In caso la validazione di un campo sia negativa, blocca l'evento e da messaggio di errore
         result.innerHTML = ''
         campiError.classList.remove('d-none')
+        scontoOttenuto.classList.add('d-none')
+
         return
     }
 
-    const preventivoFormattato = calcoloPreventivo(selectWork)
+    const preventivoFormattato = calcoloPreventivo(selectWork.value)
     const [intero, decimale] = preventivoFormattato.split(',')
+    scontoOttenuto.classList.remove('d-none')
 
 
     campiError.classList.add('d-none')
