@@ -1,3 +1,5 @@
+
+
 //Funzione per la validazione dei campi del form
 function validazioneForm(){
    let isValid = true
@@ -51,7 +53,7 @@ function calcoloPreventivo(work){
     const couponSconto = coupons.includes(couponInput.value)
 
     let costoOrario //variabile che va ad identificare il prezzo orario a seconda della scelta sul select
-    let scontoOttenuto //variabile di risposta al coupon inserito
+    let scontoOttenuto
 
     //Selezione della tipologia di lavoro
     if (work === '1'){
@@ -91,11 +93,13 @@ buttonPreventivo.addEventListener('click', function(event){
     //In caso di validazione confermata: Calcolo del preventivo
     const selectWork = document.querySelector('#selectWork').value
     const result = document.querySelector('#result')
-    
+    campiError = document.querySelector('#campiError')
+
     //Guarda il risultato della validazione del form
     if(!validazioneForm()){
-        //In caso la validazione di un campo sia negativa, blocca l'evento
+        //In caso la validazione di un campo sia negativa, blocca l'evento e da messaggio di errore
         result.innerHTML = ''
+        campiError.classList.remove('d-none')
         return
     }
 
@@ -103,6 +107,6 @@ buttonPreventivo.addEventListener('click', function(event){
     const [intero, decimale] = preventivoFormattato.split(',')
 
 
-
+    campiError.classList.add('d-none')
     result.innerHTML = `€ <strong>${intero}</strong>,${decimale}`
 })
